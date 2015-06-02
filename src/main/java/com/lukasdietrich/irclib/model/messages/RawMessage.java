@@ -28,4 +28,18 @@ public class RawMessage {
 		return String.format("RawMessage [prefix=%s, command=%s, parameters=%s]", prefix, command, parameters);
 	}
 	
+	@Override
+	public boolean equals(Object arg) {
+		if (arg instanceof RawMessage) {
+			RawMessage msg = (RawMessage) arg;
+			
+			return (msg.prefix == null && prefix == null 
+					|| msg.prefix != null && prefix != null && msg.prefix.equals(prefix))
+				&& msg.command.equals(command)
+				&& msg.parameters.equals(parameters);
+		}
+		
+		return false;
+	}
+	
 }
